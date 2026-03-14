@@ -68,7 +68,7 @@ html {
 }
 
 .header-hidden{
-  transform:translateY(-100%);
+  transform:translateY(-110%);
 }
 /* Логотип */
 
@@ -880,7 +880,7 @@ html {
 @media (max-width: 768px) {
 
  html {
-    scroll-padding-top: 120px;
+    scroll-padding-top: 20px;
   }
     
     body{
