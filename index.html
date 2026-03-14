@@ -821,24 +821,35 @@ function sendMail() {
 <script>
   let lastScroll = 0;
   const header = document.querySelector(".header");
-  const scrollThreshold = 100; // Мінімальна прокрутка для активації логіки
+  const scrollDelta = 50; // Чутливість: скільки пікселів треба прокрутити, щоб шапка зреагувала
+  const scrollThreshold = 100; // На якій відстані від верху починає працювати логіка
 
   window.addEventListener("scroll", () => {
     const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
 
-    // 1. Якщо ми в самому верху сторінки — показуємо шапку завжди
+    // Перевіряємо, чи не пише зараз користувач у формі (фокус на input або textarea)
+    const isInputActive = document.activeElement.tagName === 'INPUT' || 
+                          document.activeElement.tagName === 'TEXTAREA';
+
+    if (isInputActive) return; // Якщо фокус у формі — нічого не робимо
+
+    // 1. Якщо ми в самому верху — шапка завжди на місці
     if (currentScroll <= scrollThreshold) {
       header.classList.remove("header-hidden");
       return;
     }
 
-    // 2. Визначаємо напрямок скролу
-    // Якщо скролимо вниз — ховаємо
+    // 2. Якщо різниця у скролі занадто мала — ігноруємо (захист від мікро-рухів)
+    if (Math.abs(currentScroll - lastScroll) <= scrollDelta) {
+      return;
+    }
+
+    // 3. Логіка: вниз — ховаємо, вгору — показуємо
     if (currentScroll > lastScroll) {
+      // Гортаємо вниз
       header.classList.add("header-hidden");
-    } 
-    // Якщо скролимо вгору — показуємо
-    else {
+    } else {
+      // Гортаємо вгору
       header.classList.remove("header-hidden");
     }
 
