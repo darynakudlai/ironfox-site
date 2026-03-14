@@ -819,50 +819,31 @@ function sendMail() {
 
 
 <script>
-    let lastScrollTop = 0;
-const header = document.querySelector('.header');
+  let lastScroll = 0;
+  const header = document.querySelector(".header");
+  const scrollThreshold = 100; // Мінімальна прокрутка для активації логіки
 
-window.addEventListener('scroll', function() {
-  let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-  
-  // Якщо скролимо вниз і проскролили більше 100px
-  if (scrollTop > lastScrollTop && scrollTop > 100) {
-    header.classList.add('header-hidden');
-  } else {
-    // Якщо скролимо вгору
-    header.classList.remove('header-hidden');
-  }
-  
-  lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; 
-}, false);
-</script>
+  window.addEventListener("scroll", () => {
+    const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
 
-<script>
+    // 1. Якщо ми в самому верху сторінки — показуємо шапку завжди
+    if (currentScroll <= scrollThreshold) {
+      header.classList.remove("header-hidden");
+      return;
+    }
 
-let lastScroll = 0;
-const header = document.querySelector(".header");
+    // 2. Визначаємо напрямок скролу
+    // Якщо скролимо вниз — ховаємо
+    if (currentScroll > lastScroll) {
+      header.classList.add("header-hidden");
+    } 
+    // Якщо скролимо вгору — показуємо
+    else {
+      header.classList.remove("header-hidden");
+    }
 
-window.addEventListener("scroll", () => {
-
-const currentScroll = window.pageYOffset;
-
-/* если почти нет движения — ничего не делаем */
-if (Math.abs(currentScroll - lastScroll) < 10) {
-return;
-}
-
-/* скрываем только после прокрутки */
-if (currentScroll > lastScroll && currentScroll > 120) {
-header.classList.add("header-hidden");
-} 
-else {
-header.classList.remove("header-hidden");
-}
-
-lastScroll = currentScroll;
-
-});
-
+    lastScroll = currentScroll;
+  }, { passive: true });
 </script>
     
     <button id="backToTop" class="back-to-top">
