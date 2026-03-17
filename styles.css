@@ -862,15 +862,17 @@ html {
 
 .service-areas h2 {
   margin-bottom: 10px;
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.4);
   border-radius: 8px;
+  backdrop-filter: blur(8px);
 }
 
 .service-areas p {
   margin-bottom: 25px;
   color: var(--black);
-  background: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.4);
   border-radius: 8px;
+  backdrop-filter: blur(8px);
 }
 
 .areas-list {
