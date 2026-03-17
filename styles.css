@@ -885,14 +885,15 @@ html {
   padding: 10px;
   border-radius: 12px;
   background: rgba(0, 0, 0, 0.45); /* тёмная полупрозрачная подложка */
-  color: #fff; /* белый текст для читаемости на картинке */
+  color: #000; /* black words */
   font-size: 14px;
+  backdrop-filter: blur(8px);
 }
 
 .areas-list li {
   padding: 6px 10px;
   border-radius: 6px;
-  background: rgba(255, 165, 0, 0.3);
+  background: rgba(255, 255, 255, 0.6);
   text-align: center;
   transition: background 0.3s ease;
 }
