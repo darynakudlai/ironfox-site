@@ -725,7 +725,8 @@ We proudly serve Toronto and surrounding areas including Mississauga, Vaughan, M
     <p>
       We provide professional caulking services across the Greater Toronto Area and surrounding regions.
     </p>
-
+<button id="toggleCities" class="toggle-cities-btn">Show all cities</button>
+  <div id="cityList" class="city-list">
     <ul class="areas-list">
       <li>Toronto</li>
       <li>Mississauga</li>
@@ -788,7 +789,7 @@ We proudly serve Toronto and surrounding areas including Mississauga, Vaughan, M
       <li>Caledonia</li>
       <li>Haldimand County</li>
     </ul>
-
+</div>
   </div>
 </section>
   
@@ -977,6 +978,21 @@ function sendMail() {
     });
   });
 </script>
+
+  <script>
+const toggleBtn = document.getElementById('toggleCities');
+const cityList = document.getElementById('cityList');
+
+toggleBtn.addEventListener('click', () => {
+  if(cityList.style.display === 'none' || cityList.style.display === '') {
+    cityList.style.display = 'block';
+    toggleBtn.textContent = 'Hide cities';
+  } else {
+    cityList.style.display = 'none';
+    toggleBtn.textContent = 'Show all cities';
+  }
+});
+  </script>
     
 </body>
 </html>
