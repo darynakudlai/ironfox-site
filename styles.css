@@ -846,7 +846,7 @@ html {
 
 .service-areas p {
   margin-bottom: 25px;
-  color: #666;
+  color: var(--black);
 }
 
 .areas-list {
@@ -859,7 +859,8 @@ html {
 }
 
 .areas-list li {
-  background: rgba(0,0,0,0.05);
+  color: var(--black)
+  background: var(--orange-main);
   padding: 8px 10px;
   border-radius: 8px;
   font-size: 14px;
