@@ -42,6 +42,10 @@ html {
 /* =========================
    HEADER — Premium Glass
    ========================= */
+.menu-toggle,
+.close-btn {
+  display: none; /* по умолчанию скрыты */
+}
 
 .header {
   position: fixed;
@@ -959,6 +963,21 @@ html {
 padding-top:100px;
 }
 
+    /* ===== МОБИЛЬНОЕ УПРАВЛЕНИЕ МЕНЮ ===== */
+@media (max-width: 768px) {
+
+  .header {
+    height: 70px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .header.open {
+    height: 100vh;
+  }
+
+}
+    
 .header{
 will-change: transform;
 position:fixed;
@@ -1082,18 +1101,35 @@ gap:6px;
 }
 /* NAV */
 
-.nav{
+  .nav {
+    order: 3;
 
-order:3;
-display:flex;
-flex-wrap:nowrap;
-overflow-x:auto;
-gap:8px;
-width:100%;
-padding:8px 10px;
-border-top:1px solid rgba(0,0,0,0.05);
-scrollbar-width:none;
-}
+    /* СКРЫТО ПО УМОЛЧАНИЮ */
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-20px);
+
+    /* ВАЖНО */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+
+    width: 100%;
+    margin-top: 80px;
+    padding: 20px 0;
+
+    transition: 0.3s ease;
+  }
+
+  /* ПОКАЗЫВАЕМ ПРИ ОТКРЫТИИ */
+  .header.open .nav {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+
 
 .nav::-webkit-scrollbar {
     display: none;
@@ -1142,6 +1178,33 @@ color:white;
     transform: translateY(-100%);
   }
     }  
+@media (max-width: 768px) {
+
+  .menu-toggle{
+    display: block;
+    }
+  .menu-toggle,
+  .close-btn {
+    font-size: 28px;
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    cursor: pointer;
+  }
+
+  .close-btn {
+    display: none;
+  }
+
+  .header.open .menu-toggle {
+    display: none;
+  }
+
+  .header.open .close-btn {
+    display: block;
+  }
+
+}
 /* for mini size */
 
 @media (max-width: 480px) {
