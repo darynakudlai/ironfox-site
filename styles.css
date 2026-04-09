@@ -1141,7 +1141,7 @@ color:white;
     .header-hidden {
     transform: translateY(-100%);
   }
-      
+    }  
 /* for mini size */
 
 @media (max-width: 480px) {
